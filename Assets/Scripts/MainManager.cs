@@ -18,6 +18,21 @@ public class MainManager : MonoBehaviour
     
     private bool m_GameOver = false;
 
+     public static MainManager Instance;
+
+    // Other variables...
+
+    void Awake()
+    {
+        // Setup the singleton instance
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        
+    }
+
     
     // Start is called before the first frame update
     void Start()
@@ -60,6 +75,11 @@ public class MainManager : MonoBehaviour
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
         }
+    }
+
+        public int GetScore()
+    {
+        return m_Points;
     }
 
     void AddPoint(int point)
